@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     titleTextStyle: {
         color: config.colorTextDark,
-        fontSize: 24,
+        fontSize: 32,
         fontFamily: "Patua"
     },
     subtitleTextStyle: {

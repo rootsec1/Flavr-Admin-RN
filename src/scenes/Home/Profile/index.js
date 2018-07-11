@@ -42,6 +42,7 @@ export default class Profile extends React.Component {
                         selectionColor={ config.colorAccent }
                         underlineColorAndroid={ config.colorTextDark }
                         defaultValue={ this.state.name }
+                        value={ this.state.name }
                         onChangeText={ text => this.setState({ name: text }) }
                         style={ textInputStyle }
                     />
@@ -52,7 +53,8 @@ export default class Profile extends React.Component {
                         keyboardType="phone-pad"
                         selectionColor={ config.colorAccent }
                         underlineColorAndroid={ config.colorTextDark }
-                        defaultValue={ this.state.name }
+                        defaultValue={ this.state.phone }
+                        value={ this.state.phone }
                         onChangeText={ text => this.setState({ phone: text }) }
                         style={ [textInputStyle, { marginTop: 16 }] }
                     />
@@ -68,7 +70,10 @@ export default class Profile extends React.Component {
     }
 
     onLogoutButtonPressed() {
-
+        const { navigate } = this.props.navigation;
+        firebase.auth().signOut().then(()=>{
+            navigate("SignIn");
+        });
     }
 
     onUpdateButtonPressed() {
