@@ -8,13 +8,12 @@ import Logo from "../../components/Logo";
 
 export default class Splash extends React.PureComponent {
     render() {
-        const { navigate } = this.props.navigation;
         const { containerStyle } = styles;
 
         return (
             <View style={ containerStyle }>
-                <StatusBar backgroundColor={ config.colorBackgroundDark } barStyle="dark-content" />
-                <Animatable.View animation="bounceIn" onAnimationEnd={ () => navigate("SignIn") }>
+                <StatusBar backgroundColor={ config.colorBackgroundLight } barStyle="dark-content" />
+                <Animatable.View animation="bounceIn" onAnimationEnd={ this.onAnimationEnd.bind(this) }>
                     <Logo />
                 </Animatable.View>
             </View>
@@ -22,14 +21,22 @@ export default class Splash extends React.PureComponent {
     }
 
     componentWillMount() {
-        firebase.initializeApp({
-            apiKey: "AIzaSyDyReWW4fhPXABzYDhm-4YF3NAbpvi-RA0",
-            authDomain: "flavr-console.firebaseapp.com",
-            databaseURL: "https://flavr-console.firebaseio.com",
-            projectId: "flavr-console",
-            storageBucket: "flavr-console.appspot.com",
-            messagingSenderId: "828880926318"
-        });
+        if(firebase.apps.length===0) {
+            firebase.initializeApp({
+                apiKey: "AIzaSyDyReWW4fhPXABzYDhm-4YF3NAbpvi-RA0",
+                authDomain: "flavr-console.firebaseapp.com",
+                databaseURL: "https://flavr-console.firebaseio.com",
+                projectId: "flavr-console",
+                storageBucket: "flavr-console.appspot.com",
+                messagingSenderId: "828880926318"
+            });
+        }
+    }
+
+    onAnimationEnd() {
+        const { navigate } = this.props.navigation;
+        if(firebase.auth().currentUser===null) navigate("SignIn");
+        else navigate("Home");
     }
 };
 

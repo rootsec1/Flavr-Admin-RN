@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import config from "../../../config";
 
-export default class Button extends React.PureComponent {
+export default class OutlineButton extends React.PureComponent {
     render() {
         const {
             containerStyle,
@@ -27,11 +27,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 24,
+        borderWidth: 2,
+        borderColor: config.colorTextDark,
         borderRadius: 4,
-        backgroundColor: config.colorTextDark
+        backgroundColor: config.colorBackgroundLight
     },
     textStyle: {
-        color: "white",
+        color: config.colorTextDark,
         fontSize: 20,
         fontFamily: "Patua"
     }

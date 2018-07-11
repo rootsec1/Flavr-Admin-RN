@@ -41,7 +41,7 @@ export default class SignUp extends React.Component {
                     <Text style={ titleTextStyle }>{ "Sign Up. Join the community!" }</Text>
 
                     <TextInput
-                        placeholder="NAME"
+                        placeholder="ORGANIZATION NAME"
                         returnKeyType="next"
                         underlineColorAndroid={ config.colorTextDark }
                         style={ [textInputStyle, { marginTop: 16 }] }

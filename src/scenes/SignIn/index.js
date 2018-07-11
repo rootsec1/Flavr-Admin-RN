@@ -82,7 +82,7 @@ export default class SignIn extends React.Component {
         this.setState({ progress: true });
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(()=>{
             this.setState({ progress: false });
-            Alert.alert(config.appName, "Sign in Success");
+            this.props.navigation.navigate("Home");
         }).catch(err=>{
             this.setState({ progress: false });
             Alert.alert(config.appName, err.toString(), [ { text: "RETRY", onPress: this.signIn.bind(this) }, { text: "CANCEL" } ]);
